@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+      #stopwatch{
+        color: white;
+        font-size: large;
+        display: flex;
+        margin-left: 140px;
+      }
+      .watch{
+        border: 1px solid black;
+        height: 300px;
+        width: 400px;
+        margin-top: 100px;
+      }
+      .SB{
+        margin-left: 140px;
+      }
+    </style>
+    
+</head>
+<body style="background-image: url(https://media.istockphoto.com/id/1175053786/photo/empty-dark-blue-with-black-vignette-studio-well-use-as-background.webp?b=1&s=170667a&w=0&k=20&c=9nhEI3-wIOd3x6nWXP-jcC5Rybfr52YDU_dI2QScNoE=);">
+  <div class="watch" style="margin-left: 400px;">
+     <h1 style="color: white; margin-left: 120px;">Stopwatch</h1>
+  <div id="stopwatch">
+       <h1 class="hours">0</h1>
+       <h1 class="minutes">:00</h1>
+       <h1 class="seconds">:00</h1>
+  </div>
+       <button class="startButton SB">Start</button>
+       <button class="stopButton">Stop</button>
+  </div>
+
+  <script>
+ 
+        var hoursElement = document.querySelector(".hours");
+        var minutesElement = document.querySelector(".minutes");
+        var secondsElement = document.querySelector(".seconds");
+        var startButton = document.querySelector(".startButton");
+        var stopButton = document.querySelector(".stopButton");
+        var timerInterval;
+
+        var hours = 0;
+        var minutes = 0;
+        var seconds = 0;
+
+        function startTimer() {
+            timerInterval = setInterval(function() {
+                seconds++;
+                if (seconds >= 60) {
+                    seconds = 0;
+                    minutes++;
+                    if (minutes >= 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+                updateDisplay();
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+
+        function updateDisplay() {
+            hoursElement.innerHTML = hours;
+            minutesElement.innerHTML = `:${String(minutes).padStart(2, '0')}`;
+            secondsElement.innerHTML = `:${String(seconds).padStart(2, '0')}`;
+}
+
+        startButton.addEventListener("click", startTimer);
+        stopButton.addEventListener("click", stopTimer);
+              
+                
+              
+
+  </script>
+</body>
+</html>
